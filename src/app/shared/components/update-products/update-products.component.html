@@ -1,0 +1,66 @@
+<app-header [isModal]="true" title="Agregar"></app-header>
+
+<ion-content>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="ion-padding ion-text-center" (keypress.enter)="submit()">
+      
+      @if(form.value.img){
+        <ion-avatar>
+        <img [src]="form.value.img">
+      </ion-avatar>
+      }
+      
+      @if (!form.value.img) {
+        <ion-icon class="img-icon"   name="image-outline"></ion-icon>
+      }
+
+      <br>
+
+      <ion-button (click)="takeImage()" mode="ios"  shape="round" size="small">Tome/Seleccione una foto</ion-button>
+      
+
+
+      <app-login-input autocomplete="nameProduct" type="text" label="Nombre producto" 
+        [control]="form.controls.nameProduct"></app-login-input>
+      <div class="validators">
+        @if (form.controls.nameProduct.errors?.['required']) {
+        <div>El producto es requerido</div>
+        }
+        @if (form.controls.nameProduct.errors?.['minLength']) {
+        <div>Debe producto debe contener como minimo 3 caracteres</div>
+        }
+      </div>
+
+
+      <app-login-input autocomplete="precio" type="number" label="Precio" 
+        [control]="form.controls.price"></app-login-input>
+      <div class="validators">
+        @if (form.controls.price.errors?.['required']) {
+        <div>El precio es requerido</div>
+        }
+        @if (form.controls.price.errors?.['minLength']) {
+        <div>El salario minimo es 0</div>
+        }
+      </div>
+
+
+       <app-login-input autocomplete="amount" type="number" label="Cantidad" 
+        [control]="form.controls.amount"></app-login-input>
+      <div class="validators">
+        @if (form.controls.amount.errors?.['required']) {
+        <div>La cantidad es requerido</div>
+        }
+        @if (form.controls.amount.errors?.['minLength']) {
+        <div>La cantidad tiene que ser de  minimo  0</div>
+        }
+      </div>
+      
+   
+     
+      <ion-button class="submit" type="submit"  mode="ios"  [disabled]="form.invalid">Agregar producto
+        <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+      </ion-button>
+      
+    </form>
+
+</ion-content>
