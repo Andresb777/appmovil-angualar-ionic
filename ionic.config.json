@@ -1,0 +1,7 @@
+{
+  "name": "appmovilmercadopago",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
